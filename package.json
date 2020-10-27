@@ -1,0 +1,12 @@
+{
+  "name": "serverless-todo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:bytrangle/serverless-todo.git",
+  "author": "Trang Le <lethutrang101@gmail.com>",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "license": "MIT"
+}
