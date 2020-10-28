@@ -3,9 +3,9 @@ import { Container, Heading, Button, Flex } from "theme-ui";
 import netlifyIdentity from "netlify-identity-widget";
 
 export default (props) => {
-  // useEffect(() => {
-  //   netlifyIdentity.init({});
-  // });
+  useEffect(() => {
+    netlifyIdentity.init({});
+  });
   return (
     <Container>
       <Flex sx={{ flexDirection: "column", padding: 3 }}>
