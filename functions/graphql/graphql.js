@@ -66,4 +66,4 @@ const server = new ApolloServer({
 //     credentials: true,
 //   },
 // });
-exports.handler = server();
+exports.handler = server.createHandler();
