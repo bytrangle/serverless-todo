@@ -49,7 +49,7 @@ const server = new ApolloServer({
 
 exports.handler = server.createHandler({
   cors: {
-    origin: "*",
+    origin: "http://localhost:8000",
     allowedHeaders: ["Content-Type", "Origin", "Accept"],
     credentials: true,
   },
