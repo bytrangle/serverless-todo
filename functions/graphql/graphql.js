@@ -45,18 +45,6 @@ const server = new ApolloServer({
   resolvers,
   playground: true,
   introspection: true,
-  cors: {
-    credentials: true,
-    origin: (origin, callback) => {
-      const whitelist = ["https://localhost:8000"];
-
-      if (whitelist.indexOf(origin) !== -1) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-  },
 });
 
 // exports.handler = server.createHandler({
@@ -66,4 +54,9 @@ const server = new ApolloServer({
 //     credentials: true,
 //   },
 // });
-exports.handler = server.createHandler();
+exports.handler = server.createHandler({
+  cors: {
+    origin: true,
+    credentials: true,
+  },
+});
