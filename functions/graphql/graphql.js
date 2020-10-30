@@ -22,7 +22,8 @@ let todoIndex = 0;
 // Provide resolver functions for your schema fields
 const resolvers = {
   Query: {
-    todos: () => {
+    todos: (parent, args, { user }) => {
+      if (!user) return [];
       return Object.values(todos);
     },
   },
@@ -43,6 +44,13 @@ const resolvers = {
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  context: ({ context }) => {
+    if (context.clientContext.user) {
+      return { user: context.clientContext.user.sub };
+    } else {
+      return {};
+    }
+  },
   playground: true,
   introspection: true,
 });
