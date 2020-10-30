@@ -9,25 +9,28 @@ const { setContext } = require("apollo-link-context");
 const netlifyIdentity = require("netlify-identity-widget");
 const wrapRootElement = require("./wrap-root-element");
 
-const httpLink = new HttpLink({
-  uri: "https://amazing-lamport-5affea.netlify.app/.netlify/functions/graphql",
-});
+// const httpLink = new HttpLink({
+//   uri: "https://amazing-lamport-5affea.netlify.app/.netlify/functions/graphql",
+// });
 
-const authLink = setContext((_, { headers }) => {
-  const user = netlifyIdentity.currentUser();
-  const token = user.token.access_token;
-  // return the headers to the context so httplink can read them
-  return {
-    headers: {
-      ...headers,
-      Authorization: token ? `Bearer ${token}` : "",
-    },
-  };
-});
+// const authLink = setContext((_, { headers }) => {
+//   const user = netlifyIdentity.currentUser();
+//   const token = user.token.access_token;
+//   // return the headers to the context so httplink can read them
+//   return {
+//     headers: {
+//       ...headers,
+//       Authorization: token ? `Bearer ${token}` : "",
+//     },
+//   };
+// });
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  link: authLink.concat(httpLink),
+  link: new HttpLink({
+    uri:
+      "https://amazing-lamport-5affea.netlify.app/.netlify/functions/graphql",
+  }),
 });
 
 exports.wrapRootElement = ({ element }) => {
