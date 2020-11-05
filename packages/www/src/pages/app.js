@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
 import { Router, Link } from "@reach/router";
+import { navigate } from "gatsby";
 import { Container, Flex, Heading, Button, NavLink } from "theme-ui";
-import { IdentityContext } from "../../identity-context";
-import Dash from "./dashboard";
+import { UserContext } from "../../identity-context";
+import Todo from "../app/Todo";
 
 let DashLoggedOut = (props) => {
-  const { user, identity: netlifyIdentity } = useContext(IdentityContext);
+  const { user, identity: netlifyIdentity } = useContext(UserContext);
   return (
     <Flex>
       <Flex>
@@ -31,18 +32,28 @@ let DashLoggedOut = (props) => {
   );
 };
 
-export default (props) => {
-  const { user } = useContext(IdentityContext);
+export default () => {
+  const { user, netlifyIdentity } = useContext(UserContext);
   if (!user) {
-    return (
-      <Router>
-        <DashLoggedOut path="/app" />
-      </Router>
-    );
+    navigate("/");
+    return null;
   }
   return (
-    <Router>
-      <Dash path="/app" />
-    </Router>
+    <Container>
+      <Flex sx={{ alignItems: "center" }}>
+        <h1 style={{ marginRight: "2rem" }}>
+          Hello, {user.user_metadata.full_name}
+        </h1>
+        <Button
+          onClick={() => {
+            netlifyIdentity.logout();
+            navigate("/");
+          }}
+        >
+          Log Out
+        </Button>
+      </Flex>
+      <Todo />
+    </Container>
   );
 };
