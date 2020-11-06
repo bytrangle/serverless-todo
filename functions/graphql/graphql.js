@@ -1,8 +1,4 @@
 const { ApolloServer, gql } = require("apollo-server-lambda");
-const faunadb = require("faunadb");
-
-const q = faunadb.query;
-var client = new faunadb.Client({ secret: process.env.FAUNA });
 // Construct a schema, using GraphQL schema language
 const typeDefs = gql`
   type Query {
@@ -27,14 +23,6 @@ const resolvers = {
     todos: async (parent, args, { user }) => {
       if (!user) return [];
       return Object.values(todos);
-      // const results = await client.query(
-      //   q.Paginate(q.Match(q.Index("todos_by_user"), user))
-      // );
-      // return results.data.map(([ref, text, done]) => ({
-      //   id: ref.id,
-      //   text,
-      //   done,
-      // }));
     },
   },
   Mutation: {
@@ -44,36 +32,9 @@ const resolvers = {
       todos[id] = { id, text, done: false };
       return todos[id];
     },
-    // addTodo: async (_, { text }, { user }) => {
-    //   if (!user) throw new Error("Must be authenticated");
-    //   const results = await client.query(
-    //     q.Create(q.Collection("todos"), {
-    //       data: {
-    //         text,
-    //         done: false,
-    //         owner: user,
-    //       },
-    //     })
-    //   );
-    //   return {
-    //     ...results.data,
-    //     id: results.ref.id,
-    //   };
-    // },
     updateTodoDone: (_, { id }) => {
       todos[id].done = true;
       return todos[id];
-      // const results = await client.query(
-      //   q.Update(q.Ref(q.Collection("todos"), id), {
-      //     data: {
-      //       done: true,
-      //     },
-      //   })
-      // );
-      // return {
-      //   ...results.data,
-      //   id: results.ref.id,
-      // };
     },
   },
 };
