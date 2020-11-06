@@ -24,11 +24,13 @@ const UserContext = createContext({ user: {} });
 // };
 
 const IdentityProvider = ({ children }) => {
-  console.log("This is wrap root element");
-  if (typeof netlifyIdentity.init !== "undefined") netlifyIdentity.init();
-  const user = netlifyIdentity.currentUser();
-  console.log(user);
-  const [loggedInUser, setUser] = useState(user);
+  // console.log("This is wrap root element");
+  // const user = netlifyIdentity.currentUser();
+  // console.log(user);
+  const [loggedInUser, setUser] = useState();
+  useEffect(() => {
+    netlifyIdentity.init();
+  });
   netlifyIdentity.on("login", (user) => {
     console.log("logging in");
     netlifyIdentity.close();
