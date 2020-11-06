@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { navigate } from "gatsby";
 import { Container, Heading, Button } from "theme-ui";
-import { UserContext } from "../../../identity-context";
+import { UserContext } from "./identity-context";
 
 const PublicRoute = () => {
   console.log("This is public route");

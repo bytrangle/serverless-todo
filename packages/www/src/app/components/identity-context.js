@@ -1,8 +1,7 @@
-const React = require("react");
-const { createContext, useState, useEffect } = React;
-const netlifyIdentity = require("netlify-identity-widget");
+import React, { createContext, useState, useEffect } from "react";
+import netlifyIdentity from "netlify-identity-widget";
 
-export const UserContext = createContext({ user: {} });
+const UserContext = createContext({ user: {} });
 
 // const IdentityProvider = (props) => {
 //   const [user, setUser] = useState();
@@ -48,4 +47,4 @@ const IdentityProvider = ({ children }) => {
     </UserContext.Provider>
   );
 };
-export const Provider = IdentityProvider;
+export { UserContext, IdentityProvider };

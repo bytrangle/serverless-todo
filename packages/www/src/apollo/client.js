@@ -1,7 +1,7 @@
-const { ApolloClient, InMemoryCache, HttpLink } = require("@apollo/client");
-const { setContext } = require("apollo-link-context");
-const fetch = require("node-fetch");
-const netlifyIdentity = require("../../identity-context");
+import { ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
+import { setContext } from "apollo-link-context";
+import fetch from "node-fetch";
+import netlifyIdentity from "netlify-identity-widget";
 
 const authLink = setContext((_, { headers }) => {
   const user = netlifyIdentity.currentUser();
@@ -20,9 +20,11 @@ const httpLink = new HttpLink({
   fetch,
 });
 
-const client = new ApolloClient({
-  link: authLink.concat(httpLink),
+export const client = new ApolloClient({
+  // link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
+  link: httpLink,
 });
 
-exports.client = client;
+// exports.client = client;
+// export { client };

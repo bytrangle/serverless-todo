@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Router, Link } from "@reach/router";
 import { navigate } from "gatsby";
 import { Container, Flex, Heading, Button, NavLink } from "theme-ui";
-import { UserContext } from "../../identity-context";
+import { UserContext } from "../app/components/identity-context";
 import Todo from "../app/Todo";
 
 let DashLoggedOut = (props) => {
