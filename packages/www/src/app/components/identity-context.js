@@ -25,8 +25,7 @@ const UserContext = createContext({ user: {} });
 
 const IdentityProvider = ({ children }) => {
   console.log("This is wrap root element");
-  window.netlifyIdentity = netlifyIdentity;
-  netlifyIdentity.init();
+  if (typeof netlifyIdentity.init !== "undefined") netlifyIdentity.init();
   const user = netlifyIdentity.currentUser();
   console.log(user);
   const [loggedInUser, setUser] = useState(user);
