@@ -10,13 +10,11 @@ const tokens = {
   sizes: { container: 1024 },
 };
 
-// module.exports = ({ element }) => (
-//   <Provider>
-//     <ThemeProvider theme={tokens}>{element}</ThemeProvider>
-//   </Provider>
-// );
 export const wrapRootElement = ({ element }) => (
-  <IdentityProvider>
-    <ThemeProvider theme={tokens}>{element}</ThemeProvider>
-  </IdentityProvider>
+  <ApolloProvider client={client}>
+    <IdentityProvider>
+      <ThemeProvider theme={tokens}>{element}</ThemeProvider>
+    </IdentityProvider>
+    //{" "}
+  </ApolloProvider>
 );
