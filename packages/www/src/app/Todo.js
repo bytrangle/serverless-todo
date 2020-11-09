@@ -57,6 +57,7 @@ const Todo = ({ user, netlifyIdentity }) => {
   const [addTodo] = useMutation(ADD_TODO);
   const [updateTodoDone] = useMutation(UPDATE_TODO_DONE);
   const { loading, error, data, refetch } = useQuery(GET_TODOS);
+  console.log(data);
   return (
     <Container>
       <Flex
