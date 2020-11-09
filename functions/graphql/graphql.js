@@ -20,8 +20,7 @@ let todoIndex = 0;
 // Provide resolver functions for your schema fields
 const resolvers = {
   Query: {
-    todos: async (parent, args, { user }) => {
-      if (!user) return [];
+    todos: () => {
       return Object.values(todos);
     },
   },
