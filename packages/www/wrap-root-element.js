@@ -15,6 +15,5 @@ export const wrapRootElement = ({ element }) => (
     <IdentityProvider>
       <ThemeProvider theme={tokens}>{element}</ThemeProvider>
     </IdentityProvider>
-    //{" "}
   </ApolloProvider>
 );

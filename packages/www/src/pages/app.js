@@ -16,20 +16,24 @@ export default () => {
   // if (!user) return <Redirect to="/" />;
   return (
     <Container>
-      <Flex sx={{ alignItems: "center" }}>
-        <h1 style={{ marginRight: "2rem" }}>
-          Hello, {user?.user_metadata?.full_name}
-        </h1>
-        <Button
-          onClick={() => {
-            netlifyIdentity.logout();
-            navigate("/");
-          }}
-        >
-          Log Out
-        </Button>
-      </Flex>
-      <Todo />
+      {user && (
+        <>
+          <Flex sx={{ alignItems: "center" }}>
+            <h1 style={{ marginRight: "2rem" }}>
+              Hello, {user?.user_metadata?.full_name}
+            </h1>
+            <Button
+              onClick={() => {
+                netlifyIdentity.logout();
+                navigate("/");
+              }}
+            >
+              Log Out
+            </Button>
+          </Flex>
+          <Todo />
+        </>
+      )}
     </Container>
   );
   // useEffect(() => {
