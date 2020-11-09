@@ -14,36 +14,23 @@ const PublicRoute = () => {
   const checkLoginStatus = () => {
     if (user) return navigate("/app");
   };
-  return { user } ? null : (
-    <Container p={4} sx={{ textAlign: "center" }}>
-      <Heading as="h1" sx={{ fontSize: "72px" }}>
-        Get Nothing Done
-      </Heading>
-      <Button
-        sx={{ marginTop: 2 }}
-        onClick={() => {
-          netlifyIdentity.open();
-        }}
-      >
-        Log In / Register
-      </Button>
-    </Container>
-  );
-  // return (
-  //   <Container p={4} sx={{ textAlign: "center" }}>
-  //     <Heading as="h1" sx={{ fontSize: "72px" }}>
-  //       Get Nothing Done
-  //     </Heading>
-  //     <Button
-  //       sx={{ marginTop: 2 }}
-  //       onClick={() => {
-  //         netlifyIdentity.open();
-  //       }}
-  //     >
-  //       Log In / Register
-  //     </Button>
-  //   </Container>
-  // );
+  if (!user)
+    return (
+      <Container p={4} sx={{ textAlign: "center" }}>
+        <Heading as="h1" sx={{ fontSize: "72px" }}>
+          Get Nothing Done
+        </Heading>
+        <Button
+          sx={{ marginTop: 2 }}
+          onClick={() => {
+            netlifyIdentity.open();
+          }}
+        >
+          Log In / Register
+        </Button>
+      </Container>
+    );
+  return <h1>User is logged in</h1>;
 };
 
 export default PublicRoute;
