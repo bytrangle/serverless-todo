@@ -7,3 +7,7 @@
 //     createPage(page);
 //   }
 // };
+exports.createPages = ({ actions }) => {
+  const { createRedirect } = actions;
+  createRedirect({ fromPath: "/", toPath: "/app", isPermanent: true });
+};

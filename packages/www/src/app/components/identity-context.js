@@ -3,26 +3,6 @@ import netlifyIdentity from "netlify-identity-widget";
 
 const UserContext = createContext({ user: {} });
 
-// const IdentityProvider = (props) => {
-//   const [user, setUser] = useState();
-//   React.useEffect(() => {
-//     netlifyIdentity.init({});
-//   });
-
-//   netlifyIdentity.on("init", (user) => {
-//     console.log("initializing authentication service");
-//     setUser(user);
-//   });
-//   const _user = netlifyIdentity.currentUser();
-//   console.log(`User is \n`, _user);
-
-//   return (
-//     <UserContext.Provider value={{ identity: netlifyIdentity, user }}>
-//       {props.children}
-//     </UserContext.Provider>
-//   );
-// };
-
 const IdentityProvider = ({ children }) => {
   // if (
   //   typeof netlifyIdentity.init !== "undefined" &&

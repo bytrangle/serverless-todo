@@ -11,5 +11,6 @@
   "scripts": {
     "dev": "yarn workspace www gatsby develop"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {}
 }

@@ -3,6 +3,7 @@ import { Redirect } from "@reach/router";
 import { navigate } from "gatsby";
 import { Container, Heading, Button } from "theme-ui";
 import { UserContext } from "./identity-context";
+import Loader from "./Loader";
 
 const PublicRoute = () => {
   console.log("This is public route");
@@ -12,7 +13,10 @@ const PublicRoute = () => {
     checkLoginStatus();
   });
   const checkLoginStatus = () => {
-    if (user) return navigate("/app");
+    if (user) {
+      navigate("/app");
+      return null;
+    }
   };
   if (!user)
     return (
@@ -30,7 +34,7 @@ const PublicRoute = () => {
         </Button>
       </Container>
     );
-  return <h1>User is logged in</h1>;
+  return <Loader />;
 };
 
 export default PublicRoute;
